@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: bravi-api
+    ports:
+      - 8000:8000
+    build: ./api
+    depends_on:
+      - database
+    networks:
+      - bravi
+
+  database:
+    container_name: database
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    env_file:
+      - ./api/.env
+    networks:
+      - bravi
+
+networks:
+  bravi:
