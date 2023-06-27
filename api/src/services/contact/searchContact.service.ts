@@ -12,7 +12,12 @@ const searchContactService = async (
   { contact_id, name, phone }: IContactQuerySearch
 ): Promise<Contact[] | void> => {
   const findContacts = await database.contact.findMany({
-    where: { OR: [{ name, phone, contact_id }], AND: [{ user_id }] },
+    where: {
+      OR: [
+        { name: { contains: name }, phone: { contains: phone }, contact_id },
+      ],
+      AND: [{ user_id }],
+    },
   });
 
   return findContacts;

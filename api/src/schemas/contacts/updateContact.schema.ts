@@ -20,12 +20,12 @@ const updateContactSchema: yup.Schema<IContactRequest> = yup.object().shape({
   name: yup
     .string()
     .max(50, "o campo nome não pode ter mais de 50 caracteres")
-    .required("o campo nome é obrigatório"),
+    .notRequired(),
   email: yup
     .string()
     .max(50, "o campo email não pode ter mais de 50 caracteres")
     .email("o formato do e-mail é inválido")
-    .required("o campo nome é obrigatório"),
+    .notRequired(),
   photo_url: yup.string().notRequired(),
   phone: yup
     .string()

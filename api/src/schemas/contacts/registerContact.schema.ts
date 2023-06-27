@@ -22,7 +22,7 @@ const registerContactSchema: yup.Schema<IContactRequest> = yup.object().shape({
     .string()
     .max(50, "o campo email não pode ter mais de 50 caracteres")
     .email("o formato do e-mail é inválido")
-    .required("o campo nome é obrigatório"),
+    .notRequired(),
   photo_url: yup.string().notRequired(),
   phone: yup
     .string()
@@ -54,7 +54,7 @@ const registerContactSchema: yup.Schema<IContactRequest> = yup.object().shape({
     .notRequired(),
   number: yup
     .string()
-    .max(20, "o campo númkero não pode ter mais de 20 caracteres")
+    .max(20, "o campo número não pode ter mais de 20 caracteres")
     .notRequired(),
   complement: yup
     .string()
