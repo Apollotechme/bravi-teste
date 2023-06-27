@@ -7,7 +7,7 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 const updateUserService = async (
   user_id: string,
   { birth_date, email, name, password, phone, photo_url }: User
-): Promise<User> => {
+): Promise<void> => {
   const user = await database.user
     .findUniqueOrThrow({ where: { user_id } })
     .catch(() => {
@@ -37,8 +37,6 @@ const updateUserService = async (
     });
 
   Reflect.deleteProperty(updateUser!, "password");
-
-  return user;
 };
 
 export { updateUserService };
