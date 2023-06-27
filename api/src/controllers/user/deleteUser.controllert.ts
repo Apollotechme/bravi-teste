@@ -6,6 +6,7 @@ import { handleErrorMiddleware } from "../../middlewares/handleError.middleware"
 const deleteUserController = async (req: Request, res: Response) => {
   try {
     await deleteUserService(req.user.id);
+    return res.sendStatus(204);
   } catch (error) {
     if (error instanceof AppError) {
       handleErrorMiddleware(error, res);
