@@ -10,6 +10,7 @@ services:
       - database
     networks:
       - bravi
+    restart: always
 
   database:
     container_name: database
