@@ -3,7 +3,7 @@ import os from "node:os";
 import { app } from "./app";
 
 const cpus = os.cpus();
-const port = process.env.PORT || 8000;
+const port = 8000;
 const onWorkerError = (code: any, signal: any) => console.log(code, signal);
 
 if (cluster.isPrimary) {
