@@ -12,7 +12,7 @@ COPY ./config/docker.sh /entrypoint.sh
 
 RUN chmod a+x /entrypoint.sh
 
-RUN npx tsc
+RUN npx prisma generate && npx tsc
 
 ENTRYPOINT ["/entrypoint.sh"]
 
