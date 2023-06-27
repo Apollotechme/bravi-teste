@@ -29,5 +29,13 @@ services:
       - bravi
     restart: always
 
+  app:
+    container_name: bravi-app
+    ports:
+      - 3000:80
+    build: ./app
+    networks:
+      - bravi
+
 networks:
   bravi:
