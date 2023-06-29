@@ -15,6 +15,7 @@ const deleteUserService = async (user_id: string): Promise<void> => {
     );
   }
 
+  await database.contact.deleteMany({ where: { user_id } });
   await database.user.delete({ where: { user_id } });
 };
 

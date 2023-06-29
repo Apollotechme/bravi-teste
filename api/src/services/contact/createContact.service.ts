@@ -29,26 +29,23 @@ const createContactService = async (
     );
   }
 
-  await database.contact
-    .create({
-      data: {
-        name,
-        phone,
-        address,
-        birth_date,
-        cep,
-        city,
-        complement,
-        description,
-        district,
-        number,
-        owner: { connect: { user_id } },
-        state,
-      },
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  await database.contact.create({
+    data: {
+      name,
+      phone,
+      address,
+      birth_date,
+      cep,
+      city,
+      complement,
+      description,
+      district,
+      number,
+      owner: { connect: { user_id } },
+      state,
+    },
+  });
+
   return;
 };
 

@@ -35,6 +35,18 @@ const updateContactService = async (
     );
   }
 
+  if (phone) {
+    const phoneAlreadyExists = await database.contact.findMany({
+      where: { AND: [{ phone: { equals: phone } }, { user_id }] },
+    });
+    if (phoneAlreadyExists.length > 0) {
+      throw new AppError(
+        `Seu contato ${phoneAlreadyExists[0].name}, já possui esse número de telefone`,
+        303
+      );
+    }
+  }
+
   await database.contact.update({
     where: { contact_id },
     data: {

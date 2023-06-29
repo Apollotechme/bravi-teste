@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-interface IContactRequest {
+export interface IContactRequest {
   name: string;
   photo_url?: string | null;
   phone: string;
@@ -18,11 +18,6 @@ const registerContactSchema: yup.Schema<IContactRequest> = yup.object().shape({
     .string()
     .max(50, "o campo nome não pode ter mais de 50 caracteres")
     .required("o campo nome é obrigatório"),
-  email: yup
-    .string()
-    .max(50, "o campo email não pode ter mais de 50 caracteres")
-    .email("o formato do e-mail é inválido")
-    .notRequired(),
   photo_url: yup.string().notRequired(),
   phone: yup
     .string()

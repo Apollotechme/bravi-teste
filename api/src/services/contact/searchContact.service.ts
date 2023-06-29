@@ -13,10 +13,18 @@ const searchContactService = async (
 ): Promise<Contact[] | void> => {
   const findContacts = await database.contact.findMany({
     where: {
-      OR: [
-        { name: { contains: name }, phone: { contains: phone }, contact_id },
+      AND: [
+        {
+          OR: [
+            {
+              name: { contains: name },
+              phone: { contains: phone },
+              contact_id,
+            },
+          ],
+        },
+        { user_id },
       ],
-      AND: [{ user_id }],
     },
   });
 

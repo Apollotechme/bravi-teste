@@ -1,11 +1,12 @@
 import * as yup from "yup";
 
-interface IUserRequest {
+export interface IUserRequest {
   name: string;
   password: string;
   photo_url?: string | null;
   phone: string;
   birth_date?: string | null;
+  email: string;
 }
 
 const registerUserSchema: yup.Schema<IUserRequest> = yup.object().shape({
@@ -17,7 +18,7 @@ const registerUserSchema: yup.Schema<IUserRequest> = yup.object().shape({
     .string()
     .max(50, "o campo email não pode ter mais de 50 caracteres")
     .email("o formato do e-mail é inválido")
-    .required("o campo nome é obrigatório"),
+    .required("o campo e-mail é obrigatório"),
   password: yup
     .string()
     .max(60, "o campo senha não pode ter mais de 60 caracteres")
