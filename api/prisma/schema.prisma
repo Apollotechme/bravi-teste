@@ -15,9 +15,7 @@ model User {
   password    String    @db.VarChar(360)
   creation_dt DateTime  @default(now()) @db.Timestamptz
   last_update DateTime  @updatedAt @db.Timestamptz
-  photo_url   String?   @db.VarChar(280)
   phone       String    @db.VarChar(11)
-  birth_date  DateTime?
 
   contacts    Contact[]
 
@@ -30,10 +28,8 @@ model Contact {
   creation_dt DateTime  @default(now()) @db.Timestamptz
   last_update DateTime  @updatedAt @db.Timestamptz
   phone       String    @db.VarChar(11)
-  birth_date  DateTime?
   address     String?   @db.VarChar(80)
   city        String?   @db.VarChar(50)
-  cep         String?   @db.VarChar(8)
   district    String?   @db.VarChar(50)
   state       String?   @db.VarChar(20)
   number      String?   @db.VarChar(20)

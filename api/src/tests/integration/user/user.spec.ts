@@ -39,7 +39,6 @@ describe("User Routes", () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.name).toEqual(mockUserValid.name);
     expect(response.body.phone).toEqual(mockUserValid.phone);
-    expect(response.body.photo_url).toEqual(mockUserValid.photo_url);
     expect(response.body.password).toBeUndefined();
   });
 
@@ -47,7 +46,6 @@ describe("User Routes", () => {
     const patch = await request(url)
       .patch("/v1/user")
       .send({
-        birth_date: "05/05/1995",
         name: "Samuel Patch",
         password: "123456",
       })
@@ -60,7 +58,6 @@ describe("User Routes", () => {
     expect(patch.statusCode).toBe(200);
     expect(response.body).toHaveProperty("user_id");
     expect(response.body.name).toEqual("Samuel Patch");
-    expect(response.body.birth_date).toEqual("1995-05-05T00:00:00.000Z");
   });
 
   test("It should not be possible to create another user with the same email", async () => {

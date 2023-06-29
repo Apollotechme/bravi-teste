@@ -6,8 +6,6 @@ const createContactService = async (
   user_id: string,
   {
     address,
-    birth_date,
-    cep,
     city,
     complement,
     description,
@@ -34,8 +32,6 @@ const createContactService = async (
       name,
       phone,
       address,
-      birth_date,
-      cep,
       city,
       complement,
       description,

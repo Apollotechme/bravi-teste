@@ -5,12 +5,10 @@ import { AppError } from "../../errors/appError";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 
 const createUserService = async ({
-  birth_date,
   email,
   name,
   password,
   phone,
-  photo_url,
 }: User): Promise<void> => {
   const hashedPassword = hashSync(password, 10);
 
@@ -27,8 +25,6 @@ const createUserService = async ({
         name,
         password: hashedPassword,
         phone,
-        birth_date: birth_date ? new Date(birth_date) : undefined,
-        photo_url,
       },
     })
     .catch((err) => {

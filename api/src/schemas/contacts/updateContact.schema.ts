@@ -3,8 +3,6 @@ import * as yup from "yup";
 interface IUpdateContatRequest {
   contact_id: string;
   address?: string | null;
-  birth_date?: string | null;
-  cep?: string | null;
   city?: string | null;
   complement?: string | null;
   description?: string | null;
@@ -36,7 +34,6 @@ const updateContactSchema: yup.Schema<IUpdateContatRequest> = yup
         "o campo telefone não pode ter mais de 11 carcteres (DD996######"
       )
       .notRequired(),
-    birth_date: yup.string().notRequired(),
     address: yup
       .string()
       .max(80, "o campo endereço não pode conter mais que 80 caracteres")
@@ -44,13 +41,6 @@ const updateContactSchema: yup.Schema<IUpdateContatRequest> = yup
     city: yup
       .string()
       .max(50, "o campo cidade não pode conter mais que 50 caracteres")
-      .notRequired(),
-    cep: yup
-      .string()
-      .max(
-        8,
-        "o campo cep não pode ter mais de 8 dígitos, não inclua hífens ou pontos"
-      )
       .notRequired(),
     district: yup
       .string()

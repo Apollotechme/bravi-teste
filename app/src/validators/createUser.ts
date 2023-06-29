@@ -1,13 +1,6 @@
 import * as yup from "yup";
 
-export interface IUserRequest {
-  name: string;
-  password: string;
-  phone: string;
-  email: string;
-}
-
-const registerUserSchema: yup.Schema<IUserRequest> = yup.object().shape({
+const createUserSchema = yup.object().shape({
   name: yup
     .string()
     .max(50, "o campo nome não pode ter mais de 50 caracteres")
@@ -19,12 +12,18 @@ const registerUserSchema: yup.Schema<IUserRequest> = yup.object().shape({
     .required("o campo e-mail é obrigatório"),
   password: yup
     .string()
-    .max(60, "o campo senha não pode ter mais de 60 caracteres")
-    .required("o campo senha é obrigatório"),
+    .min(8, "A senha deve conter no mínimo 8 caracteres.")
+    .matches(
+      /(^(?=.*?\d)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\W|_])).+$/,
+      "Deve conter: letras maiúsculas, minúsculas, números e ao menos um símbolo."
+    ),
+  password_confirm: yup
+    .string()
+    .oneOf([yup.ref("password")], "As senhas devem ser idênticas."),
   phone: yup
     .string()
     .max(11, "o campo telefone não pode ter mais de 11 carcteres (DD996######")
     .required("o campo telefone é obrigatório"),
 });
 
-export { registerUserSchema };
+export default createUserSchema;

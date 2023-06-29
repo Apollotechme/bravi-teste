@@ -4,7 +4,6 @@ export interface IContactRequest {
   name: string;
   photo_url?: string | null;
   phone: string;
-  birth_date?: string | null;
   address?: string | null;
   city?: string | null;
   district?: string | null;
@@ -18,12 +17,10 @@ const registerContactSchema: yup.Schema<IContactRequest> = yup.object().shape({
     .string()
     .max(50, "o campo nome não pode ter mais de 50 caracteres")
     .required("o campo nome é obrigatório"),
-  photo_url: yup.string().notRequired(),
   phone: yup
     .string()
     .max(11, "o campo telefone não pode ter mais de 11 carcteres (DD996######")
     .required("o campo telefone é obrigatório"),
-  birth_date: yup.string().notRequired(),
   address: yup
     .string()
     .max(80, "o campo endereço não pode conter mais que 80 caracteres")
@@ -31,13 +28,6 @@ const registerContactSchema: yup.Schema<IContactRequest> = yup.object().shape({
   city: yup
     .string()
     .max(50, "o campo cidade não pode conter mais que 50 caracteres")
-    .notRequired(),
-  cep: yup
-    .string()
-    .max(
-      8,
-      "o campo cep não pode ter mais de 8 dígitos, não inclua hífens ou pontos"
-    )
     .notRequired(),
   district: yup
     .string()
