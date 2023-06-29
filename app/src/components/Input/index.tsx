@@ -18,7 +18,7 @@ const CustomInput = ({
         // border={setBorder}
       >
         <input {...rest} {...register(id as string)} />
-        {error && <Tooltip>{error}</Tooltip>}
+        {error && <span>{error}</span>}
       </div>
     </>
   );
