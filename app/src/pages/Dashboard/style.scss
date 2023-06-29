@@ -16,7 +16,7 @@
 
   .content__tech,
   .content__list {
-    width: 100%;
+    width: 50%;
   }
 
   .content__tech {
@@ -27,7 +27,7 @@
     padding: 0.5rem 0;
     line-height: 0;
     box-sizing: border-box;
-    width: 100%;
+    width: 50%;
 
     h3 {
       font-size: 1rem;
@@ -54,8 +54,10 @@
   .list__skill {
     background-color: var(--color-grey-4);
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     border-radius: 4px;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     padding: 0 1rem;
     height: 3rem;
@@ -69,14 +71,14 @@
 
     h4 {
       max-width: 20ch;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      margin-left: 0.5rem;
       white-space: nowrap;
       font-size: 0.9rem;
     }
   }
 
   .skill__details {
+    margin-left: 1rem;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -84,6 +86,8 @@
 
     span {
       font-size: 0.8rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
       font-weight: 400;
       color: var(--color-grey-1);
       padding-right: 0.5rem;
@@ -135,6 +139,21 @@
         color: var(--color-grey-0);
         background-color: var(--color-grey-2);
       }
+    }
+  }
+
+  @media (max-width: 1800px) {
+    .skill__details {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .list__skill {
+      min-height: 10rem;
+    }
+
+    .content__list {
+      width: 100%;
     }
   }
 

@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { SwitchContext } from "../../context/SwitchContext";
 import { IContact } from "../../types/typeAuthContext";
 import "./style.scss";
+import ContactCircle from "../../assets/contact-circle.svg";
 
 const Dashboard = () => {
   const { contacts } = useContext(AuthContext);
@@ -27,18 +28,19 @@ const Dashboard = () => {
             contacts.map((contact) => {
               return (
                 <li className="list__skill" key={contact.contact_id}>
+                  <img src={ContactCircle} alt="contato" />
                   <h4>{contact.name}</h4>
                   <div className="skill__details">
-                    <span>{contact.phone}</span>
+                    <span>{contact.phone && `Telefone: ${contact.phone}`}</span>
                     <span>
                       {contact.description &&
                         `Descrição: ${contact.description}`}
                     </span>
-                    <span>{contact.address && `Rua ${contact.address}`}</span>
+                    <span>{contact.address && `Rua: ${contact.address}`}</span>
                     <span>{contact.number && `Número: ${contact.number}`}</span>
                     <span>
                       {contact.complement &&
-                        `Complemento: ${contact.complement}`}
+                        `Complemento: ${contact.complement} |`}
                     </span>
                     <span>
                       {contact.district && `Bairro: ${contact.district}`}

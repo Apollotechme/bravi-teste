@@ -15,6 +15,7 @@ import { SwitchContext } from "../../context/SwitchContext";
 import registerConcactSchema from "../../validators/createContact";
 import { Api } from "../../services/api";
 import { AxiosError } from "axios";
+import "./style.scss";
 
 const CreateContact = () => {
   const token = localStorage.getItem("@BraviToken");
@@ -121,10 +122,11 @@ const CreateContact = () => {
         register={register}
         error={errors?.description?.message}
       />
-
-      <Button submit buttonStyle="primary">
-        Cadastrar Contato
-      </Button>
+      <div className="simple__button">
+        <Button submit buttonStyle="primary">
+          Cadastrar Contato
+        </Button>
+      </div>
     </Formulary>
   );
 };

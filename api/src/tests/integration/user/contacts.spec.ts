@@ -123,7 +123,7 @@ describe("Contacts Routes", () => {
 
     expect(response.statusCode).toBe(303);
     expect(response.body).toHaveProperty("message");
-    expect(response.body.messa).toEqual(
+    expect(response.body.message).toEqual(
       `Seu contato ${mockContactValidTwo.name}, já possui esse número de telefone`
     );
   });
