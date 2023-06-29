@@ -1,5 +1,5 @@
 import { IInputProps } from "../../types/typeComponents";
-import Tooltip from "../Tooltip";
+
 import "./style.scss";
 
 const CustomInput = ({
@@ -13,10 +13,7 @@ const CustomInput = ({
   return (
     <>
       <label htmlFor={id}>{label}</label>
-      <div
-        className="styled-input"
-        // border={setBorder}
-      >
+      <div className="styled-input">
         <input {...rest} {...register(id as string)} />
         {error && <span>{error}</span>}
       </div>

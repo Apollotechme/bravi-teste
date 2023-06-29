@@ -17,16 +17,18 @@ import { AuthContext } from "../../context/AuthContext";
 
 const UpdateContact = () => {
   const { modalSwitcher } = useContext(SwitchContext);
-  const { focus } = useContext(AuthContext);
+  const { focus, setFocus } = useContext(AuthContext);
   const { updateToast, loadPattern } = useContext(NotificationContext);
 
   const update: SubmitHandler<IUpdateContact> = async (data) => {
     console.log({ data });
 
     const load = toast.loading(...loadPattern);
-    await Api.patch(`/v1/contacts/`, data).catch(() =>
-      updateToast(load, "Opa, parece que algo quebrou", "error")
-    );
+    await Api.patch(`/v1/contacts/`, data)
+      .catch(() => updateToast(load, "Opa, parece que algo quebrou", "error"))
+      .then(async () => {
+        await Api.get("/v1/contacts").then((res) => setFocus(res.data));
+      });
     updateToast(load, "Contato alterado com sucesso", "success");
     modalSwitcher("update_tech", {} as IContact);
   };

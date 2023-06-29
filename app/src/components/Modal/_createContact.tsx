@@ -30,7 +30,6 @@ const CreateContact = () => {
 
   const addContact: SubmitHandler<IContactRequest> = async (data) => {
     const load = toast.loading(...loadPattern);
-    console.log("OLHA O TOKEN", { token });
     try {
       await Api.post("/v1/contacts", data, {
         headers: { Authorization: `Bearer ${token}` },
@@ -45,7 +44,6 @@ const CreateContact = () => {
     const { data: userData } = await Api.get<IUser>("/v1/user", {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log("OLHA O TOKEN", { token });
     setUser(userData);
   };
   return (

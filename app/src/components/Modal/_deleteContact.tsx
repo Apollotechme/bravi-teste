@@ -5,16 +5,18 @@ import Button from "../Button";
 import Formulary from "../Formulary";
 import { AuthContext } from "../../context/AuthContext";
 import { SwitchContext } from "../../context/SwitchContext";
+import { Api } from "../../services/api";
 
 const RemoveContact = () => {
-  const { focus, removeTech } = useContext(AuthContext);
+  const { focus } = useContext(AuthContext);
   const { modalSwitcher } = useContext(SwitchContext);
 
   return (
     <Formulary
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event.preventDefault();
-        removeTech();
+        await Api.delete(`/v1/contacts/${focus.contact_id}`);
+
         modalSwitcher("remove_tech");
       }}
     >

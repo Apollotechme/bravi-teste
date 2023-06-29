@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
 import { BsPlusLg } from "react-icons/bs";
 
@@ -9,10 +9,17 @@ import { SwitchContext } from "../../context/SwitchContext";
 import { IContact } from "../../types/typeAuthContext";
 import "./style.scss";
 import ContactCircle from "../../assets/contact-circle.svg";
+import { Api } from "../../services/api";
 
 const Dashboard = () => {
-  const { contacts } = useContext(AuthContext);
+  const { contacts, setContacts } = useContext(AuthContext);
   const { modalSwitcher } = useContext(SwitchContext);
+
+  useEffect(() => {
+    Api.get(`/v1/contacts/`)
+      .then((res) => setContacts(res.data))
+      .catch((err) => console.log(err));
+  }, [modalSwitcher, setContacts]);
 
   return (
     <PrivateContent>
